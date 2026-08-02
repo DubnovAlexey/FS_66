@@ -1,60 +1,34 @@
-// - Hybrid Architecture
 const astronaut = {
     name: "Alex",
     planet: "Mars",
     age: 32,
-    isCommander: true,
-    missionDuration: 90
+    duration: 90,
+    status: true
 };
 
-// - Mutable Derived State
-let futureAge = astronaut.age + 10;
-let extendedMissionDuration = astronaut.missionDuration + 30;
 
-//- Encapsulation of logging logic into a Function 
-const printAstronautProfile = (astronautData, labelColor) =>{
-    // - Template Literal for formatting
+const printAstronautProfile = (astronautData, labelColor) => {
     const profileMessage = `
-      ============================
+      ================================
       👨‍🚀 ASTRONAUT PROFILE
-      ============================
+      ================================
       Name: ${astronautData.name}
-      Destination: ${astronautData.destination}
+      Destination: ${astronautData.planet}
       Current Age: ${astronautData.age}
-      FutureAge: ${astronautData.futureAge} 
       Mission Duration: ${astronautData.duration} days
-      extendedMissionDuration: ${astronautData.extendedMissionDuration} days
       Commander Status: ${astronautData.status}
       ============================
     `;
-    
-    // - Styled Output in Console
+
     console.log("%c" + profileMessage, `color: ${labelColor}; font-weight: bold; background: #111;`);
 };
 
-// - Initial State Output. Green color.
-printAstronautProfile({
-    name: "Alex",
-    destination: "Mars",
-    age: 32,
-    duration: 90,
-    status: true
-}, "#00ff00");
+printAstronautProfile(astronaut, "#00ff00");
+astronaut.age = 32 + 10; //  Update Age in 10 years
+astronaut.duration = 90 + 30;  // Updating base duration to 120 days as required after adding 30
+astronaut.status = false;  // Updating commander status
 
-// - Step 6: State Reassignment
-missionDuration = extendedMissionDuration; // Updating duration using calculation
-isCommander = false; 
-
-// - Final State Output after changes. Orange color.
-printAstronautProfile({
-    name: "Alex",
-    destination: "Mars",
-    age: 32,
-    futureAge: 32 + 10, // Calculating futureAge exactly where it's needed inside the Object
-    duration: 90,
-    extendedMissionDuration: 120, // Updated duration
-    status: false
-}, "#00ff00");
+printAstronautProfile(astronaut, "#ff9900");
 
 /*
 Задача: Система профилей астронавтов 🚀
