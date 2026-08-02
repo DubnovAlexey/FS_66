@@ -1,13 +1,15 @@
 // - Hybrid Architecture
-const astronautName = "Alex";
-const planet = "Mars";
-let astronautAge = 32;
-let isCommander = true;
-let missionDuration = 90;
+const astronaut = {
+    name: "Alex",
+    planet: "Mars",
+    age: 32,
+    isCommander: true,
+    missionDuration: 90
+};
 
 // - Mutable Derived State
-let futureAge = astronautAge + 10;
-let extendedMissionDuration = missionDuration + 30;
+let futureAge = astronaut.age + 10;
+let extendedMissionDuration = astronaut.missionDuration + 30;
 
 //- Encapsulation of logging logic into a Function 
 const printAstronautProfile = (astronautData, labelColor) =>{
@@ -19,8 +21,9 @@ const printAstronautProfile = (astronautData, labelColor) =>{
       Name: ${astronautData.name}
       Destination: ${astronautData.destination}
       Current Age: ${astronautData.age}
-      Age in 10 years: ${astronautData.futureAge} 
+      FutureAge: ${astronautData.futureAge} 
       Mission Duration: ${astronautData.duration} days
+      extendedMissionDuration: ${astronautData.extendedMissionDuration} days
       Commander Status: ${astronautData.status}
       ============================
     `;
@@ -30,7 +33,13 @@ const printAstronautProfile = (astronautData, labelColor) =>{
 };
 
 // - Initial State Output. Green color.
-printAstronautProfile(astronautName, planet, astronautAge, missionDuration, isCommander, "#00ff00");
+printAstronautProfile({
+    name: "Alex",
+    destination: "Mars",
+    age: 32,
+    duration: 90,
+    status: true
+}, "#00ff00");
 
 // - Step 6: State Reassignment
 missionDuration = extendedMissionDuration; // Updating duration using calculation
@@ -42,7 +51,8 @@ printAstronautProfile({
     destination: "Mars",
     age: 32,
     futureAge: 32 + 10, // Calculating futureAge exactly where it's needed inside the Object
-    duration: 120,
+    duration: 90,
+    extendedMissionDuration: 120, // Updated duration
     status: false
 }, "#00ff00");
 
