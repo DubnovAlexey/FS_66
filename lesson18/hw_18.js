@@ -40,7 +40,6 @@ console.log(calculator(10, 5, add)); // 15
 console.log(calculator(10, 5, subtract)); // 5
 console.log(calculator(10, 5, multiply)); // 50
 console.log(calculator(10, 5, divide)); // 2
-console.log(calculator(10, 0, divide));
 console.log("1=================================");
 
 
@@ -71,7 +70,6 @@ console.log(calculator1(12, 5, add1)); // 17
 console.log(calculator1(12, 5, subtract1)); // 7
 console.log(calculator1(12, 5, multiply1)); // 60
 console.log(calculator1(12, 5, divide1)); // 2.4
-console.log(calculator1(12, 0, divide1));
 console.log("2============================");
 
 
@@ -96,4 +94,3 @@ console.log(calculator2(13, 5, add2)); // 18
 console.log(calculator2(13, 5, subtract2)); // 8
 console.log(calculator2(13, 5, multiply2)); // 65
 console.log(calculator2(13, 5, divide2)); // 2.6
-console.log(calculator2(13, 0, divide2));
