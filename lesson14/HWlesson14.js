@@ -1,14 +1,13 @@
 const astronaut = {
-    name: "Alex",
-    planet: "Mars",
-    age: 32,
-    duration: 90,
-    status: true
+  name: "Alex",
+  planet: "Mars",
+  age: 32,
+  duration: 90,
+  status: true,
 };
 
-
 const printAstronautProfile = (astronautData, labelColor) => {
-    const profileMessage = `
+  const profileMessage = `
       ================================
       👨‍🚀 ASTRONAUT PROFILE
       ================================
@@ -20,13 +19,16 @@ const printAstronautProfile = (astronautData, labelColor) => {
       ============================
     `;
 
-    console.log("%c" + profileMessage, `color: ${labelColor}; font-weight: bold; background: #111;`);
+  console.log(
+    "%c" + profileMessage,
+    `color: ${labelColor}; font-weight: bold; background: #111;`,
+  );
 };
 
 printAstronautProfile(astronaut, "#00ff00");
 astronaut.age = 32 + 10; //  Update Age in 10 years
-astronaut.duration = 90 + 30;  // Updating base duration to 120 days as required after adding 30
-astronaut.status = false;  // Updating commander status
+astronaut.duration = 90 + 30; // Updating base duration to 120 days as required after adding 30
+astronaut.status = false; // Updating commander status
 
 printAstronautProfile(astronaut, "#ff9900");
 

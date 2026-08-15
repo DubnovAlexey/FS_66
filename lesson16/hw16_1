@@ -1,0 +1,25 @@
+let number2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // создаем массив чисел
+console.log(number2);
+number2.splice(10, 0, 11); // добавляем элемент в конец массива
+console.log(number2);
+number2.splice(0, 0, 0); // добавляем элемент в начало массива
+console.log(number2);
+number2.splice(0, 1); // удаляем первый элемент массива
+number2.splice(10, 1); // удаляем последний элемент массива
+console.log(number2);
+number2.splice(3, 1, 99); // заменяем элемент по индексу 3 на 99
+console.log(number2);
+console.log(number2.length); // выводим длину массива
+console.log("====================");
+
+let numbers = [1, 2, 3, 4, 5,6,7,8,9,10]; // создаем массив чисел
+console.log(numbers);
+numbers.push(11,); // добавляем элемент в конец массива
+numbers.unshift(0); // добавляем элемент в начало массива
+console.log(numbers);
+numbers.shift(); // удаляем первый элемент массива
+numbers.pop(); // удаляем последний элемент массива
+console.log(numbers);
+numbers.splice(3,1,99,); // заменяем элемент по индексу 3 на 99
+console.log(numbers);
+console.log(numbers.length); // выводим длину массива
