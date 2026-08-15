@@ -40,6 +40,7 @@ console.log(calculator(10, 5, add)); // 15
 console.log(calculator(10, 5, subtract)); // 5
 console.log(calculator(10, 5, multiply)); // 50
 console.log(calculator(10, 5, divide)); // 2
+console.log(calculator(10, 0, divide));
 console.log("1=================================");
 
 
@@ -66,10 +67,11 @@ const divide1 = function(a,b){
 const calculator1 = function (a,b,operation){
     return operation(a,b);
 };
-console.log(calculator1(12, 5, add)); // 17
-console.log(calculator1(12, 5, subtract)); // 7
-console.log(calculator1(12, 5, multiply)); // 60
-console.log(calculator1(12, 5, divide)); // 2.4
+console.log(calculator1(12, 5, add1)); // 17
+console.log(calculator1(12, 5, subtract1)); // 7
+console.log(calculator1(12, 5, multiply1)); // 60
+console.log(calculator1(12, 5, divide1)); // 2.4
+console.log(calculator1(12, 0, divide1));
 console.log("2============================");
 
 
@@ -90,7 +92,8 @@ const divide2 = (a,b)=>{
 
 const calculator2 = (a,b,operation)=> operation(a,b);
 
-console.log(calculator2(13, 5, add)); // 18
-console.log(calculator2(13, 5, subtract)); // 8
-console.log(calculator2(13, 5, multiply)); // 65
-console.log(calculator2(13, 5, divide)); // 2.6
+console.log(calculator2(13, 5, add2)); // 18
+console.log(calculator2(13, 5, subtract2)); // 8
+console.log(calculator2(13, 5, multiply2)); // 65
+console.log(calculator2(13, 5, divide2)); // 2.6
+console.log(calculator2(13, 0, divide2));
