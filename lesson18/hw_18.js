@@ -94,3 +94,20 @@ console.log(calculator2(13, 5, add2)); // 18
 console.log(calculator2(13, 5, subtract2)); // 8
 console.log(calculator2(13, 5, multiply2)); // 65
 console.log(calculator2(13, 5, divide2)); // 2.6
+
+console.log("3==================")
+const operation ={
+    "+":(a,b)=>a+b,
+    "-":(a,b)=>a-b,
+    "*":(a,b)=>a*b,
+    "/":(a,b)=>{
+        if (b ===0)
+            return "/ 0"
+        return a/b;
+    }
+}
+console.log(operation["+"](5,9));
+console.log(operation["-"](5,9));
+console.log(operation["*"](5,9));
+console.log(operation["/"](5,9));
+console.log(operation["/"](5,0));
