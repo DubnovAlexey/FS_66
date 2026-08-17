@@ -44,6 +44,7 @@ console.log("1=================================");
 
 
 // 2. Function Expression
+
 const add1 = function(a,b){
     return a+b;
 };
