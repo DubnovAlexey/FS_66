@@ -103,7 +103,7 @@ const operation ={
     "*":(a,b)=>a*b,
     "/":(a,b)=>{
         if (b ===0)
-            return "/ 0"
+            return "'На ноль делить нельзя'0"
         return a/b;
     }
 }
