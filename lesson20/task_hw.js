@@ -59,11 +59,11 @@ function findMaxString(arr, compFunc) {
 
     // --- ЦЕПОЧКА МЕТОДОВ (Pipeline) ---
 
-    // .filter() - отбор по условию: убираем пустые строки[cite: 1]
-    const processedData = arr.filter(item => item.length > 0)
+    // .map() - преобразование элементов: очищаем строки от лишних пробелов[cite: 1]
+    const processedData = arr.map(item => item.trim())
 
-        // .map() - преобразование элементов: очищаем строки от лишних пробелов[cite: 1]
-        .map(item => item.trim())
+        // .filter() - отбор по условию: убираем пустые строки[cite: 1]
+        .filter(item => item.length > 0)
 
         // .sort() - сортируем массив. Он напрямую принимает функцию-компаратор[cite: 1]
         .sort(compFunc);
@@ -77,7 +77,7 @@ function findMaxString(arr, compFunc) {
     // Сравниваем элементы с помощью переданного компаратора
     const maxString = processedData.reduce((acc, curr) => {
         // Если компаратор вернул 1, значит текущий элемент (curr) больше аккумулятора (acc)
-        return compFunc(curr, acc) === 1 ? curr : acc;
+        return compFunc(curr, acc) > 0 ? curr : acc;
     });
 
     return maxString;
