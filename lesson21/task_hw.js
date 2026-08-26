@@ -108,3 +108,101 @@ function printCatalog(productsArray) {
 }
 
 printCatalog(warehouse);
+
+// 2a. Конструктор банковского счета
+function Account(iban, owner, initialBalance) {
+    this.iban = iban;
+    this.owner = owner;
+    this.balance = initialBalance;
+
+    // Метод пополнения
+    this.deposit = function(amount) {
+        if (amount > 0) {
+            this.balance += amount;
+            return true; // Сигнализируем об успехе
+        }
+        return false;
+    };
+
+    // Метод снятия
+    this.withdraw = function(amount) {
+        // Проверяем: сумма должна быть > 0 и должно хватать средств
+        if (amount > 0 && this.balance >= amount) {
+            this.balance -= amount;
+            return true; // Транзакция разрешена и выполнена
+        }
+        return false; // Транзакция отклонена
+    };
+
+    // Метод проверки сканером
+    this.getBalance = function() {
+        return this.balance;
+    };
+}
+
+// Создаем "узлы" счетов
+const acc1 = new Account("UE-8472-91", "James Holden", 1000);
+const acc2 = new Account("UE-1138-00", "Naomi Nagata", 500);
+const acc3 = new Account("UE-9999-55", "Amos Burton", 0);
+
+// Массив счетов
+const bankNetwork = [acc1, acc2, acc3];
+
+console.log("=== БАЛАНСЫ ДО ПЕРЕВОДОВ ===");
+bankNetwork.forEach(acc => console.log(`${acc.owner}: ${acc.getBalance()} кредитов`));
+
+
+
+// 2b & 2c. Функция перевода с формированием отчета
+function transfer(accountFrom, accountTo, amount) {
+    // 1. Создаем пустой "бланк отчета" о транзакции
+    const receipt = {
+        account1: accountFrom.iban,
+        account2: accountTo.iban,
+        amount: amount
+    };
+
+    // 2. Пытаемся снять деньги (вызываем метод).
+    // Если withdraw вернет true, значит деньги списались, идем дальше.
+    let isWithdrawSuccess = accountFrom.withdraw(amount);
+
+    if (isWithdrawSuccess) {
+        // Деньги списаны успешно. Зачисляем их на второй счет.
+        accountTo.deposit(amount);
+
+        // Встраиваем метод в бланк отчета (транзакция успешна)
+        receipt.transactionInfo = function() {
+            return `[SUCCESS] Перевод ${this.amount} кр. | С ${this.account1} на ${this.account2}`;
+        };
+    } else {
+        // Денег не хватило. Добавляем в бланк "штамп об ошибке".
+        receipt.error = "INSUFFICIENT_FUNDS (Недостаточно средств или неверная сумма)";
+
+        // Встраиваем метод в бланк отчета (транзакция провалена)
+        receipt.transactionInfo = function() {
+            return `[FAILED] Ошибка: ${this.error} | Попытка перевода ${this.amount} кр. с ${this.account1}`;
+        };
+    }
+
+    // 3. Возвращаем готовый бланк отчета (объект)
+    return receipt;
+}
+
+// ==========================================
+// ТЕСТИРОВАНИЕ СИСТЕМЫ
+// ==========================================
+console.log("\n=== ИНИЦИАЛИЗАЦИЯ ТРАНЗАКЦИЙ ===");
+
+// Транзакция 1: Успешная (Холден переводит Наоми 300)
+const tx1 = transfer(acc1, acc2, 300);
+console.log(tx1.transactionInfo());
+
+// Транзакция 2: Провальная (Амос пытается перевести 5000, которых у него нет)
+const tx2 = transfer(acc3, acc1, 5000);
+console.log(tx2.transactionInfo());
+
+// Посмотрим на сам объект с ошибкой, чтобы убедиться, что поле error создалось:
+console.log("\nОбъект неудачной транзакции под капотом:", tx2);
+
+console.log("\n=== БАЛАНСЫ ПОСЛЕ ПЕРЕВОДОВ ===");
+bankNetwork.forEach(acc => console.log(`${acc.owner}: ${acc.getBalance()} кредитов`));
