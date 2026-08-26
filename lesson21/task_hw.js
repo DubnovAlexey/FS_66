@@ -212,7 +212,7 @@ bankNetwork.forEach(acc => console.log(`${acc.owner}: ${acc.getBalance()} кре
 
                                 =====Вариант2=====
 
-Служба Транзакций (Паттерн Service / GameHub Level)
+Служба Транзакций.
 Создается отдельный объект-менеджер TransactionService, который ведет лог всех переводов в базу данных (Ledger) с возможностью отмены (Rollback).
  */
 // 1. Сущность "Счет" (Контейнер с деньгами)
