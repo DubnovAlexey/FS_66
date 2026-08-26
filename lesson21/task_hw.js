@@ -70,6 +70,8 @@ const manualProduct1 = {
         return `Товар: ${this.name}; Цена: ${this.price}; Описание: ${this.description}`;
     }
 };
+console.log(manualProduct1);
+console.log(manualProduct1.info());
 
 // 1b.
 function Product(name, description, price) {
@@ -108,6 +110,8 @@ function printCatalog(productsArray) {
 }
 
 printCatalog(warehouse);
+
+
 //====================================================================
 //====================================================================
 // 2a. Конструктор банковского счета
