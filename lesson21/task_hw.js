@@ -61,4 +61,50 @@ transactionInfo() должна в этом случае выводить инф�
 
 */
 
+// 1a.
+const manualProduct1 = {
+    name: "Quantum Processor X1", // String
+    description: "128-core CPU for orbital stations",
+    price: 4500, // Number
+    info: function () {
+        return `Товар: ${this.name}; Цена: ${this.price}; Описание: ${this.description}`;
+    }
+};
 
+// 1b.
+function Product(name, description, price ) {
+    this.name = name;
+    this.description = description;
+    this.price = price;
+    this.info = function () {
+        return `Товар: ${this.name}; Цена: ${this.price}; Описание: ${this.description}`;
+
+    };
+}
+
+const prod1 = new Product("Nav Computer", "Calculates jump routes", 12000);
+const prod2 = new Product("Plasma Cell", "Standard energy unit", 150);
+const prod3 = new Product("Asteroid Miner Drone", "Automated mining unit", 3400);
+
+
+// 1c.
+const warehouse = [prod1, prod2, prod3];
+
+function printCatalog(productsArray) {
+    console.log("=== ЗАПУСК СКАНЕРА КАТАЛОГА ===");
+
+    for (let i =0; i<productsArray.length; i++) {
+        let currentItem = productsArray[i];
+        console.log(`\nТовар ${i + 1}`);
+
+        for (let key in currentItem) {
+            if (typeof currentItem[key] == "function") {
+                console.log(`  ${key}: ${currentItem[key]()}`);
+            } else {
+                console.log(`  ${key}: ${currentItem[key]}`);
+            }
+        }
+    }
+}
+
+printCatalog(warehouse);
