@@ -88,6 +88,9 @@ const prod1 = new Product("Nav Computer", "Calculates jump routes", 12000);
 const prod2 = new Product("Plasma Cell", "Standard energy unit", 150);
 const prod3 = new Product("Asteroid Miner Drone", "Automated mining unit", 3400);
 
+console.log(prod1);
+console.log(prod2);
+console.log(prod3);
 
 // 1c.
 const warehouse = [prod1, prod2, prod3];
