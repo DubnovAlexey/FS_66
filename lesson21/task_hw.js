@@ -239,7 +239,7 @@ function LedgerAccount(iban, owner, initialBalance) {
 }
 
 // 2. Сущность "Чек/Запись в журнале" (Transaction Record)
-// Это неизменяемый слепок того, что произошло. Как черный ящик самолета.
+// Это неизменяемый слепок того, что произошло.
 function TransactionRecord(id, type, fromIban, toIban, amount, status, errorMsg = null) {
     this.id = id;             // Уникальный номер операции
     this.timestamp = new Date().toISOString(); // Точное время по серверу
@@ -263,7 +263,7 @@ function TransactionRecord(id, type, fromIban, toIban, amount, status, errorMsg 
 // Этот объект управляет ВСЕМИ переводами и хранит историю.
 function TransactionService() {
     // Ledger - Главная книга (массив всех чеков).
-    // Это наш архив, куда складируются все документы.
+    // Это архив, куда складируются все документы.
     this.ledger = [];
 
     // Внутренний счетчик для генерации уникальных ID транзакций
@@ -274,7 +274,7 @@ function TransactionService() {
         this.txCounter++; // Увеличиваем счетчик для нового ID
         const txId = `TX-${this.txCounter}`;
 
-        // Валидация (Проверка таможни перед отправкой груза)
+        // Валидация (Проверка перед отправкой)
         if (amount <= 0) {
             const record = new TransactionRecord(txId, 'TRANSFER', accountFrom.iban, accountTo.iban, amount, 'FAILED', 'Сумма должна быть больше нуля');
             this.ledger.push(record); // push() - команда "положить в конец массива (архива)"
@@ -287,7 +287,7 @@ function TransactionService() {
             return record;
         }
 
-        // Выполнение перевода (Груз пошел)
+        // Выполнение перевода
         accountFrom.withdraw(amount);
         accountTo.deposit(amount);
 
@@ -298,10 +298,10 @@ function TransactionService() {
         return successRecord;
     };
 
-    // Метод отмены транзакции (Экстренный возврат груза)
+    // Метод отмены транзакции (Экстренный возврат)
     this.rollback = function (transactionId, accountsNetwork) {
         // Ищем транзакцию в архиве по ID
-        // find() - это робот-архивариус. Он перебирает все чеки (tx)
+        // find() - перебирает все чеки (tx)
         // и возвращает тот, где tx.id совпадает с нужным transactionId.
         const originalTx = this.ledger.find(tx => tx.id === transactionId);
 
@@ -339,7 +339,7 @@ function TransactionService() {
     // Вывод всей истории
     this.printLedger = function () {
         console.log("\n=== ГЛАВНАЯ КНИГА ТРАНЗАКЦИЙ (LEDGER) ===");
-        // forEach - команда конвейеру "Сделай это действие для каждого элемента массива"
+        // forEach - команда "Сделай это действие для каждого элемента массива"
         this.ledger.forEach(record => console.log(record.printInfo()));
         console.log("=========================================\n");
     };
