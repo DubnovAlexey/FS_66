@@ -113,6 +113,8 @@ function printCatalog(productsArray) {
 }
 
 printCatalog(warehouse);
+
+
 //====================================================================
 /*
 ### 2
