@@ -67,5 +67,53 @@ console.log(`Total price for ${p5.name}: ${totalPriceP5}`); // -0.9  - НЕВЕ�
 
 // 6. Некорректная дата истечения срока годности
 const p6 = { name: "Сыр", count: 0.3, price: 3.0, expDate: "2024-15-35" };
-console.log(`Expiration date for ${p6.name}: ${(new Date(p6.expDate))}`); // Expiration date for Сыр: Invalid Date
+// console.log(`Expiration date for ${p6.name}: ${(new Date(p6.expDate))}`); // Expiration date for Сыр: Invalid Date
+
+// 7. Некорректный формат (не YYYY-MM-DD - не ISO) даты истечения срока годности
+const p7 = { name: "Сыр", count: 0.3, price: 3.0, expDate: "25#05#2023" };
+//console.log(`Expiration date for ${p7.name}: ${(new Date(p7.expDate))}`); // Expiration date for Сыр: Invalid Date
+
+console.log("=== Содержимое холодильника  ===");
+console.log(products);
+
+function isProductValid(product) {
+    const title = product.name;
+    const count = product.count;
+    const price = product.price;
+    const expDate = product.expDate;
+
+    if (title === null) {
+        return false;
+    }
+
+    if (title.lenght < 3) {
+        return false;
+    }
+
+    if (!/^[А-Я][а-я]+$/.test(title)) {
+        // в названии только русские маленкие и большие буквы
+        return false;
+    }
+
+    if (price < 0) {
+        return false;
+    }
+
+    if (count < 0) {
+        return false;
+    }
+    //TO DO добавить проверки даты
+
+    return true;
+}
+
+function filterProducts(products){
+    return products.filter(p => isProductValid(p));
+}
+
+console.log("====== Допустимые продукты =========")
+const validProducts=filterProducts(products);
+console.log(validProducts);
+
+
  
