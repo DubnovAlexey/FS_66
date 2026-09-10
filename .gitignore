@@ -1,0 +1,18 @@
+# Среда разработки WebStorm
+.idea/
+
+# Папки с тяжелыми зависимостями
+node_modules/
+
+# Локальные настройки переменных окружения (пароли, ключи)
+.env
+.env.local
+
+# Системные файлы Windows/Mac
+Thumbs.db
+.DS_Store
+
+# Папки с готовыми сборками (React/Next/Astro)
+dist/
+build/
+.next/
