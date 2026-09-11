@@ -37,18 +37,39 @@ for (const key in weatherData.current_weather) {
     console.log(`${key} >>>>> ${value}`);
 }
 
+console.log("===Важное дополнение для использования []");
+
+const person={
+    name: "John",
+    "age": 30,
+    "address city": "New York"
+};
+
+console.log(person["address city"]);
+const key1="address city";
+console.log(person[key1]); // This will work and print "New York"
+// console.log(person.address city); // This will cause an error because of the space in the property name
+
+console.log("===Многократное использование   []");
+const key2="current_weather";
+const key3="temperature";
+console.log(weatherData[key2][key3]); // This will print the temperature value
 
 console.log("===Повторяем использование axios вместо fetch");
+
 import axios from 'axios';
+
 async function returnWeatherAxios(latitude, longitude) {
     return axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
 }
+
 async function mainAxios(latitude, longitude) {
     const weatherDataAxios = await returnWeatherAxios(latitude, longitude);
     console.log(weatherDataAxios.data);  // Object получаем через data
     return weatherDataAxios.data;
 }
 
-const weatherDataAxios = await mainAxios(44.49, 20.27);
+
+const weatherDataAxios = await mainAxios(44.49, 20.27);  // Object
 const temperatureAxios = weatherDataAxios.current_weather.temperature;
 console.log(`Current temperature (Axios): ${temperatureAxios}°C`);

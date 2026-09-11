@@ -114,6 +114,3 @@ function filterProducts(products){
 console.log("====== Допустимые продукты =========")
 const validProducts=filterProducts(products);
 console.log(validProducts);
-
-
- 

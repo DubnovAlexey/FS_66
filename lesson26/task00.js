@@ -1,3 +1,13 @@
+//============================================
+
+// https://jsonplaceholder.typicode.com/posts
+
+// npm install --save-dev jest
+// "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+
+//============================================
+
+
 import readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 import { writeFile, readFile } from "node:fs/promises";
