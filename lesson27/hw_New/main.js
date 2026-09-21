@@ -1,10 +1,8 @@
-
-
 import { getAuthenticatedUser } from './authService.js';
 import { readFromJsonFile } from './fileService.js';
 import { createBasePromptByRole, createPrompt } from './promptService.js';
 import { askAi } from './aiService.js';
-import { ROLES, FRIDGE_FILE } from './config.js';
+import { ROLES, BACKEND_FRIDGE_URL } from './config.js';
 
 const usernameInput = document.getElementById('username');
 const dishInput = document.getElementById('dish');
@@ -24,24 +22,23 @@ async function handleSearch() {
     try {
         validateInput(username, dishTitle);
 
-        // 1. Определяем пользователя и его роль
         const authenticatedUser = getAuthenticatedUser(username);
 
-        // 2. ADMIN и USER видят содержимое холодильника, GUEST — нет
         let products = [];
         if (authenticatedUser.role === ROLES.ADMIN || authenticatedUser.role === ROLES.USER) {
-            products = await readFromJsonFile(FRIDGE_FILE);
+            products = await readFromJsonFile(BACKEND_FRIDGE_URL);
         }
 
-        // 3. Строим промпт и спрашиваем AI
         const basePrompt = createBasePromptByRole(authenticatedUser);
-        const prompt = createPrompt(basePrompt, dishTitle, products);
+        const prompt = createPrompt(basePrompt, dishTitle, products, authenticatedUser.role);
+
+        // Ждем возвращения зонда с орбиты ИИ
         const answer = await askAi(prompt);
 
-        // 4. Показываем результат
-        renderResult(answer);
+        // ВАЖНО: Теперь мы передаем не только текст, но и роль пользователя
+        renderResult(answer, authenticatedUser.role);
     } catch (error) {
-        showError(error.message || 'Неизвестная ошибка приложения');
+        showError(error.message || 'Неизвестная системная ошибка');
     }
 }
 
@@ -54,14 +51,30 @@ function validateInput(username, dishTitle) {
     }
 }
 
-function renderResult(text) {
+// ДОБАВЛЕН ПАРАМЕТР role
+function renderResult(text, role) {
+    // 1. Очищаем старый результат
     resultBox.innerHTML = '';
 
+    // 2. Если это ГОСТЬ, добавляем информационную плашку (маркер)
+    if (role === ROLES.GUEST) {
+        const guestWarning = document.createElement('p');
+        // Добавим немного встроенных стилей для выделения (или можно вынести в CSS)
+        guestWarning.style.color = '#a5333a'; // Красненький цвет
+        guestWarning.style.fontSize = '0.9rem';
+        guestWarning.style.fontWeight = '600';
+        guestWarning.style.marginBottom = '12px';
+        guestWarning.textContent = 'Внимание: Вы вошли как Гость. Рецепт сгенерирован без учета содержимого вашего холодильника.';
+        resultBox.appendChild(guestWarning);
+    }
+
+    // 3. Создаем заголовок "Результат:"
     const title = document.createElement('p');
     title.className = 'result-title';
     title.textContent = 'Результат:';
     resultBox.appendChild(title);
 
+    // 4. Отрисовываем сам список продуктов от ИИ
     text
         .split('\n')
         .map((line) => line.trim())
