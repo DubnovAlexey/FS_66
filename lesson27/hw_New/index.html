@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умный холодильник — AI-повар</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+    <h1>Умный холодильник</h1>
+    <p class="subtitle">AI-повар подскажет, что приготовить</p>
+
+    <div class="card">
+        <label for="username">Имя пользователя</label>
+        <input type="text" id="username" placeholder="John, Bill или любое другое" autocomplete="off">
+
+        <label for="dish">Название блюда</label>
+        <input type="text" id="dish" placeholder="Например, борщ" autocomplete="off">
+
+        <button id="search-btn" type="button">Искать</button>
+
+        <div id="result"></div>
+    </div>
+</main>
+
+<!-- Модальное окно для отображения ошибок -->
+<div id="error-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="error-message">
+    <div class="modal-box">
+        <p id="error-message"></p>
+        <button id="close-modal" type="button">Закрыть</button>
+    </div>
+</div>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

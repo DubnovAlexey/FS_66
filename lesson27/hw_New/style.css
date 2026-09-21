@@ -1,0 +1,99 @@
+:root {
+    --bg: #f6f4ef;
+    --card-bg: #ffffff;
+    --text: #2b2b26;
+    --muted: #6b6b63;
+    --accent: #3a6b52;
+    --border: #ddd8cc;
+    --error: #a5333a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 32px 16px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+main { width: 100%; max-width: 420px; }
+h1 { font-size: 1.4rem; margin-bottom: 4px; }
+p.subtitle { color: var(--muted); margin-top: 0; margin-bottom: 24px; }
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+label { display: block; font-weight: 600; font-size: 0.9rem; margin-top: 14px; }
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+input:focus, button:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+}
+
+button#search-btn {
+    width: 100%;
+    margin-top: 18px;
+    padding: 11px;
+    border: none;
+    border-radius: 6px;
+    background: var(--accent);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button#search-btn:hover { opacity: 0.92; }
+
+#result { margin-top: 20px; min-height: 24px; }
+#result p { margin: 4px 0; }
+#result .result-title { font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.modal-overlay.hidden { display: none; }
+
+.modal-box {
+    background: white;
+    border-radius: 10px;
+    padding: 22px;
+    max-width: 320px;
+    width: 100%;
+    text-align: center;
+    border-top: 4px solid var(--error);
+}
+
+.modal-box p { margin: 0 0 16px; }
+
+.modal-box button {
+    padding: 8px 18px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    cursor: pointer;
+}
