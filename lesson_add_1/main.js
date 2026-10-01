@@ -52,8 +52,9 @@ function addProduct(productName) {
 
 function handleAddProductFromList() {
     const uniqueProducts = [...new Set(productsFromList)];
+    console.log("Before for Each", uniqueProducts);
     //new Set === Новый Set, [...new Set(productsFromList)] => новый массив
-    productsFromList.forEach(addProduct)
+    productsFromList.forEach(addProduct);
     console.log(uniqueProducts);
 }
 
