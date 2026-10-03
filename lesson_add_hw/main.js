@@ -57,11 +57,19 @@ function createUI(container) {
     inputCategory.type = "text";
     inputCategory.placeholder = "Категория (например, Напитки)";
 
+    // Связываем наш input с невидимым списком подсказок
+    // Атрибут list указывает браузеру, откуда брать варианты (по ID)
+    inputCategory.setAttribute("list", "category-list");
+
+    // Создаем сам элемент datalist (он невидим на экране)
+    const dataList = document.createElement("datalist");
+    dataList.id = "category-list"; // Тот самый ID, который мы указали строчкой выше
+
     const btnAdd = document.createElement("button");
     btnAdd.type = "submit";
     btnAdd.textContent = "Добавить";
 
-    form.append(inputName, inputCategory, btnAdd);
+    form.append(inputName, inputCategory, dataList, btnAdd);
 
     // -- Блок Фильтров --
     const filtersContainer = document.createElement("div");
@@ -90,7 +98,7 @@ function createUI(container) {
     // Функция возвращает (return) объект со ссылками на созданные элементы,
     // чтобы мы могли обращаться к ним из других частей кода.
     return {
-        form, inputName, inputCategory, list,
+        form, inputName, inputCategory, dataList, list,
         btnCreateDraft, btnSaveDraft, btnCancelDraft, draftWarning,
         btnFilterAll, btnFilterNeed, btnFilterBought
     };
@@ -130,6 +138,38 @@ function renderProducts(arrayToRender) {
     });
 }
 
+// Функция для динамического обновления выпадающего списка категорий
+function updateCategoryDropdown() {
+    // 1. Определяем, откуда брать данные: из черновика или из основного массива
+    // isDraftMode - это наш флаг (true/false).
+    // Если true (?) берем draftProducts, если false (:) берем products.
+    const targetArray = isDraftMode ? draftProducts : products;
+
+    // 2. Извлекаем категории.
+    // Метод .map() берет массив объектов и создает из него новый массив.
+    // Мы говорим: "Пройдись по каждому продукту (p) и верни только его категорию (p.category)".
+    // ВАЖНО: .map() берет ВСЕ элементы из targetArray. Ему абсолютно неважно,
+    // равен ли статус bought true или false. Зачеркнутые товары тоже будут учтены.
+    const allCategories = targetArray.map(p => p.category);
+
+    // 3. Удаляем дубликаты.
+    // Set — это специальная структура данных в JavaScript, которая физически не может
+    // хранить одинаковые значения. Если попытаться положить туда две "Выпечки", останется одна.
+    // Конструкция [...new Set()] берет наш грязный массив, пропускает через Set и возвращает чистый.
+    const uniqueCategories = [...new Set(allCategories)];
+
+    // 4. Очищаем старые подсказки в HTML (чтобы они не дублировались при каждом обновлении)
+    ui.dataList.innerHTML = "";
+
+    // 5. Заполняем <datalist> уникальными категориями
+    // Метод .forEach() запускает цикл: "Для каждой категории сделай следующее..."
+    uniqueCategories.forEach(categoryString => {
+        const option = document.createElement("option"); // Создаем HTML-тег <option>
+        option.value = categoryString;                   // Кладем в него текст категории
+        ui.dataList.append(option);                      // Вставляем его в наш невидимый список
+    });
+}
+
 // Функция добавления нового продукта
 function handleAddProduct(event) {
     // e.preventDefault() отменяет стандартное поведение браузера при отправке формы
@@ -137,7 +177,7 @@ function handleAddProduct(event) {
 
     // Получаем текст из полей ввода, очищая от пробелов по краям (trim)
     const nameValue = ui.inputName.value.trim();
-    const categoryValue = ui.inputCategory.value.trim();// Защита (Валидация): Если пусто, выходим из функции (return)
+    const categoryValue = ui.inputCategory.value.trim();//  Если пусто, выходим из функции
     if (!nameValue || !categoryValue) {
         return;
     }
@@ -145,8 +185,8 @@ function handleAddProduct(event) {
     // Определяем, с каким массивом работаем (основной или черновик)
     const targetArray = isDraftMode ? draftProducts : products;
 
-    // Метод some() проверяет, есть ли хотя бы один элемент, удовлетворяющий условию.
-    // Переводим всё в нижний регистр (toLowerCase), чтобы "Молоко" и "молоко" считались дублем.
+    // some() проверяет, есть ли хотя бы один элемент, удовлетворяющий условию.
+    // Переводим всё в нижний регистр (toLowerCase).
     const isDuplicate = targetArray.some(p => p.name.toLowerCase() === nameValue.toLowerCase());
 
     if (isDuplicate) {
@@ -173,6 +213,7 @@ function handleAddProduct(event) {
 
 // Обновляем отображение
     applyFiltersAndRender();
+
 }
 
 // Функция изменения статуса "Куплено / Не куплено"
@@ -208,6 +249,9 @@ function applyFiltersAndRender() {
 
     // Отправляем отфильтрованный массив на отрисовку
     renderProducts(filteredArray);
+
+    // ОБНОВЛЯЕМ И СПИСОК КАТЕГОРИЙ
+    updateCategoryDropdown();
 }
 
 
