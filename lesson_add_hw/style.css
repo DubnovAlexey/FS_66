@@ -1,0 +1,83 @@
+/* Базовые настройки для всего документа */
+body {
+    font-family: sans-serif;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+/* Стили для главного контейнера приложения */
+#app {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Стили для формы добавления (чтобы элементы стояли красиво) */
+form {
+    display: flex;
+    gap: 10px; /* Расстояние между элементами внутри формы */
+    margin-bottom: 20px;
+}
+
+/* Стили для полей ввода и кнопок */
+input, button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для списка ul и элементов li */
+ul {
+    list-style-type: none; /* Убираем стандартные черные точки списка */
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer; /* Курсор-рука показывает, что элемент кликабельный */
+}
+
+/* Класс для купленных товаров */
+.bought {
+    text-decoration: line-through; /* Зачеркиваем текст */
+    background-color: #e9ecef;
+    color: #6c757d;
+}
+
+/* Блок фильтров */
+.filters, .draft-controls {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    gap: 10px;
+}
+
+/* Подсветка активной кнопки фильтра */
+.active-filter {
+    background-color: #28a745;
+}
+
+/* Вспомогательный класс, чтобы прятать элементы (например, кнопки черновика) */
+.hidden {
+    display: none !important;
+}
