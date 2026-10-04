@@ -9,7 +9,10 @@ createUI(app);
 
 // 2. БИЗНЕС-ЛОГИКА (Управление грузопотоками)
 function applyFiltersAndRender() {
+    // 1. Определяем, откуда берем данные (черновик или оригинал)
     const targetArray = state.isDraftMode ? state.draftProducts : state.products;
+
+    // --- БЛОК ФИЛЬТРАЦИИ ДЛЯ СПИСКА ПРОДУКТОВ ---
     let filteredArray = [];
 
     if (state.currentFilter === 'ALL') {
@@ -20,9 +23,19 @@ function applyFiltersAndRender() {
         filteredArray = targetArray.filter(p => p.bought === true);
     }
 
-    // Рендерим отфильтрованное и передаем функцию переключения статуса
+    // --- БЛОК ПОДГОТОВКИ ДАННЫХ ДЛЯ КАТЕГОРИЙ ---
+    // Мы перенесли бизнес-логику расчетов сюда. Мозг сам вычисляет, что нужно отдать интерфейсу.
+    // .map() собирает все категории из текущего массива данных
+    const allCategories = targetArray.map(p => p.category);
+    // Set удаляет дубликаты, а [...] превращает это обратно в чистый массив
+    const uniqueCategories = [...new Set(allCategories)];
+
+    // --- ПЕРЕДАЧА ДАННЫХ В UI (ИНТЕРФЕЙС) ---
+    // Передаем отфильтрованный массив продуктов и функцию переключения статуса
     renderProducts(filteredArray, toggleProduct);
-    updateCategoryDropdown();
+
+    // Передаем готовый массив уникальных категорий в выпадающий список
+    updateCategoryDropdown(uniqueCategories);
 }
 
 function handleAddProduct(event) {

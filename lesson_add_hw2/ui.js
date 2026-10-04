@@ -1,5 +1,5 @@
 // ui.js
-import { state } from './state.js';
+
 
 // Создаем пустой контейнер, куда сложим все ссылки на HTML-элементы,
 // чтобы командный центр (main.js) мог повесить на них радары-слушатели.
@@ -99,17 +99,17 @@ export function renderProducts(arrayToRender, onToggleCallback) {
 }
 
 // Функция обновления выпадающего списка категорий
-export function updateCategoryDropdown() {
-    const targetArray = state.isDraftMode ? state.draftProducts : state.products;
-    const allCategories = targetArray.map(p => p.category);
-    const uniqueCategories = [...new Set(allCategories)];
-
+// Функция стала "чистой". Она принимает готовый массив строк (categoriesArray) снаружи.
+// Ей абсолютно неважно, откуда этот массив пришел: из черновика, из основного списка или из интернета.
+export function updateCategoryDropdown(categoriesArray) {
+    // 1. Очищаем старый список
     uiElements.dataList.innerHTML = "";
 
-    uniqueCategories.forEach(categoryString => {
-        const option = document.createElement("option");
-        option.value = categoryString;
-        uiElements.dataList.append(option);
+    // 2. Проходим по массиву, который нам передали через параметры
+    categoriesArray.forEach(categoryString => {
+        const option = document.createElement("option"); // Создаем тег
+        option.value = categoryString;                   // Записываем текст
+        uiElements.dataList.append(option);              // Вставляем в DOM
     });
 }
 
