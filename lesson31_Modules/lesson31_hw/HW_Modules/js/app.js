@@ -9,17 +9,17 @@ const body = document.body;
 // Слушаем клик по кнопке
 themeToggleBtn.addEventListener('click', () => {
     // Переключаем класс 'light-theme' на теге <body>
-    body.classList.toggle('light-theme');
+    const isLight =body.classList.toggle('light-theme');
 
     // Меняем текст на кнопке в зависимости от текущей темы
-    if (body.classList.contains('light-theme')) {
+    if (isLight) {
         themeToggleBtn.textContent = '🌙 Dark Mode';
     } else {
         themeToggleBtn.textContent = '☀️ Light Mode';
     }
 });
-// --------------------------------
 
+// --------------------------------
 
 // 1. Выполняем математические вычисления
 const mathResults = [
