@@ -52,7 +52,6 @@ renderResults("Geometry Operations", geoResults);
 
 // // variant 2
 
-
 // const result1 = add(15, 7);
 // const result2 = subtract(20, 8);
 // const result3 = multiply(6, 9);

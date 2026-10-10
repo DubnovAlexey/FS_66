@@ -1,0 +1,62 @@
+/* Базовые настройки страницы */
+:root {
+    --bg-color: #1e1e2e;
+    --card-bg: #282a36;
+    --text-color: #f8f8f2;
+    --accent-color: #bd93f9;
+    --border-radius: 12px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Центральный контейнер */
+.container {
+    background-color: var(--card-bg);
+    padding: 2rem 3rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 500px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--accent-color);
+    margin-top: 0;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+}
+
+/* Секции с результатами */
+.result-section {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.result-section h2 {
+    font-size: 1.2rem;
+    margin-top: 0;
+    color: #8be9fd;
+}
+
+.result-section p {
+    margin: 0.5rem 0;
+    font-family: monospace;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    border-radius: 4px;
+}
