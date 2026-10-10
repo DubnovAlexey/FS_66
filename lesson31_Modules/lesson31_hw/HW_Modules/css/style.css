@@ -1,10 +1,26 @@
-/* Базовые настройки страницы */
+/* Базовые настройки страницы (Темная тема по умолчанию) */
 :root {
     --bg-color: #1e1e2e;
     --card-bg: #282a36;
     --text-color: #f8f8f2;
     --accent-color: #bd93f9;
     --border-radius: 12px;
+    --section-bg: rgba(255, 255, 255, 0.05);
+    --result-bg: rgba(0, 0, 0, 0.2);
+    --btn-bg: #44475a;
+    --btn-text: #f8f8f2;
+}
+
+/* Светлая тема (переопределение переменных) */
+body.light-theme {
+    --bg-color: #f0f0f5;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --accent-color: #6272a4;
+    --section-bg: rgba(0, 0, 0, 0.05);
+    --result-bg: rgba(255, 255, 255, 0.8);
+    --btn-bg: #e0e0e0;
+    --btn-text: #333333;
 }
 
 body {
@@ -17,6 +33,27 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    /* Плавный переход при смене темы */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Кнопка переключения темы */
+.theme-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.theme-btn:hover {
+    filter: brightness(1.2);
 }
 
 /* Центральный контейнер */
@@ -24,9 +61,10 @@ body {
     background-color: var(--card-bg);
     padding: 2rem 3rem;
     border-radius: var(--border-radius);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 500px;
+    transition: background-color 0.3s ease;
 }
 
 h1 {
@@ -41,14 +79,14 @@ h1 {
 .result-section {
     margin-top: 1.5rem;
     padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--section-bg);
     border-radius: 8px;
 }
 
 .result-section h2 {
     font-size: 1.2rem;
     margin-top: 0;
-    color: #8be9fd;
+    color: var(--accent-color);
 }
 
 .result-section p {
@@ -56,7 +94,8 @@ h1 {
     font-family: monospace;
     font-size: 1.1rem;
     letter-spacing: 0.5px;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--result-bg);
     padding: 8px;
     border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.1);
 }

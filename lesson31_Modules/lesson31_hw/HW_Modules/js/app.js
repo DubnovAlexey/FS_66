@@ -1,6 +1,26 @@
 import {add, multiply, subtract, divide} from "./math.js";
 import {PI, getRectangleArea, getCircleArea, getCircleLength} from "./geometry.js";
 
+
+// --- Логика переключения темы ---
+const themeToggleBtn = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Слушаем клик по кнопке
+themeToggleBtn.addEventListener('click', () => {
+    // Переключаем класс 'light-theme' на теге <body>
+    body.classList.toggle('light-theme');
+
+    // Меняем текст на кнопке в зависимости от текущей темы
+    if (body.classList.contains('light-theme')) {
+        themeToggleBtn.textContent = '🌙 Dark Mode';
+    } else {
+        themeToggleBtn.textContent = '☀️ Light Mode';
+    }
+});
+// --------------------------------
+
+
 // 1. Выполняем математические вычисления
 const mathResults = [
     `15 + 7 = ${add(15, 7)}`,
