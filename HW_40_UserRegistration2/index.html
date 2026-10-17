@@ -1,18 +1,18 @@
-<!doctype html> <!-- Объявляем современный стандарт HTML для единообразного разбора страницы браузером. -->
-<html lang="en"> <!-- Указываем английский язык видимого интерфейса приложения. -->
-<head> <!-- Начинаем служебную часть документа. -->
-    <meta charset="UTF-8"> <!-- Включаем UTF-8 для корректного отображения английского текста и русских комментариев. -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Подстраиваем ширину страницы под экран устройства. -->
-    <meta name="theme-color" content="#edf2ef"> <!-- Подбираем цвет браузерной панели в поддержку фона приложения. -->
-    <meta name="description" content="A calm, simple user registration app built with HTML, CSS, and JavaScript."> <!-- Описываем страницу для браузера и поисковой выдачи. -->
-    <title>User Registration</title> <!-- Задаём название вкладки. -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#edf2ef">
+    <meta name="description" content="A calm, simple user registration app built with HTML, CSS, and JavaScript.">
+    <title>User Registration</title>
     <link rel="stylesheet" href="css/main.css"> <!-- Подключаем общую палитру, сетку и оформление страницы. -->
     <link rel="stylesheet" href="css/form.css"> <!-- Подключаем стили полей, кнопок, сообщений и списка. -->
     <script src="js/user.js" defer></script> <!-- Загружаем правила пользователя; defer ждёт разбора HTML и сохраняет порядок скриптов. -->
     <script src="js/userManager.js" defer></script> <!-- Загружаем закрытый менеджер после создания пользователя. -->
     <script src="js/app.js" defer></script> <!-- Загружаем интерфейсную логику последней, чтобы её функции уже существовали. -->
-</head> <!-- Закрываем служебную часть документа. -->
-<body> <!-- Начинаем видимое содержимое страницы. -->
+</head>
+<body>
 <main class="page-shell"> <!-- Центрируем приложение и ограничиваем ширину чтения. -->
     <header class="page-heading"> <!-- Группируем главный заголовок и вступительную фразу. -->
         <p class="eyebrow">PEOPLE OPERATIONS</p> <!-- Добавляем сдержанный надзаголовок для визуальной иерархии. -->
@@ -64,6 +64,6 @@
         <span class="status-dot" aria-hidden="true"></span> <!-- Добавляем декоративный индикатор активной сессии. -->
         <p>Session only <span aria-hidden="true">·</span> records clear when the page is refreshed.</p> <!-- Сообщаем, что данные хранятся только до обновления страницы. -->
     </footer> <!-- Завершаем нижнюю подпись. -->
-</main> <!-- Закрываем основную оболочку приложения. -->
-</body> <!-- Завершаем видимое содержимое. -->
-</html> <!-- Закрываем HTML-документ. -->
+</main>
+</body>
+</html>
