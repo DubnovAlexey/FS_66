@@ -14,3 +14,23 @@ console.log(`Multiplication: ${result3}`);
 
 import { PI } from './math.js';
 console.log(`Value of PI: ${PI}`);
+
+
+console.log("========================================");
+
+import {users, getAdult as filterAdults} from "./users.js";
+// import renderUsers from "./ui.js"; // {} не нужны, так как мы экспортируем по умолчанию
+import showUsers from "./ui.js";
+
+// console.log(users);
+// const adults = getAdult(users);
+// console.log("Adult Users:", adults);
+
+const container = document.querySelector("#result");
+const adults = filterAdults(users);
+
+// renderUsers(adults, container);
+showUsers(adults, container); // renderUsers is default export, so we can use any name for it
+
+console.log("========================================");
+

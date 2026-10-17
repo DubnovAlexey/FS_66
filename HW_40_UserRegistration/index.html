@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>User Registration</title>
+    <link rel="stylesheet" href="css/main.css" /> <
+    <link rel="stylesheet" href="css/form.css" />
+    <script defer src="js/user.js"></script>
+    <script defer src="js/userManager.js"></script>
+    <script defer src="js/app.js"></script>
+</head>
+<body>
+<main class="page">
+    <header class="page__header">
+        <h1 class="page__title">User Registration</h1>
+        <p class="page__lead">Add people to the list below. Name is required; age is a whole number from 0 to 120.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="form-title"> <!-- Белая панель с формой; aria-labelledby связывает её с невидимым заголовком -->
+        <h2 id="form-title" class="visually-hidden">Registration form</h2> <!-- Заголовок для программ экранного чтения (на экране скрыт) -->
+        <div class="form" role="group" aria-label="Registration form"> <!-- Контейнер полей; role="group" — «группа элементов» для доступности -->
+            <div class="field"> <!-- Обёртка первого поля (имя) -->
+                <label for="name-input" class="visually-hidden">Name</label> <!-- Подпись поля для доступности; for связывает её с полем по id -->
+                <input id="name-input" class="field__input" type="text" placeholder="Name" autocomplete="off" /> <!-- Текстовое поле имени; id нужен для JS; placeholder — подсказка Name -->
+            </div> <!-- Конец обёртки поля имени -->
+            <div class="field"> <!-- Обёртка второго поля (возраст) -->
+                <label for="age-input" class="visually-hidden">Age</label> <!-- Подпись поля возраста (скрыта визуально) -->
+                <input id="age-input" class="field__input" type="number" placeholder="Age" min="0" max="120" step="1" inputmode="numeric" /> <!-- Числовое поле; подсказка Age; min/max/step управляют стрелками поля -->
+            </div> <!-- Конец обёртки поля возраста -->
+            <button id="register-button" class="button" type="button">Register</button> <!-- Кнопка регистрации; type="button" — не отправляет форму и не перезагружает страницу -->
+            <p id="message" class="message" role="status" aria-live="polite"></p> <!-- Область сообщений (ошибки и подтверждения); пустая — на экране не видна -->
+        </div>
+    </section>
+
+    <section class="users" aria-labelledby="users-title"> <!-- Блок списка пользователей под формой -->
+        <div class="users__head"> <!-- Строка: заголовок слева, счётчик справа -->
+            <h2 id="users-title" class="users__title">Registered Users</h2> <!-- Заголовок списка (по заданию — Registered Users) -->
+            <p class="users__count">Total: <span id="user-count" class="users__count-value">0</span></p> <!-- Доп. задание A: счётчик; число в span обновляет JavaScript -->
+        </div> <!-- Конец строки заголовка -->
+        <div class="filters" role="group" aria-label="Filter users"> <!-- Доп. задание C: группа кнопок-фильтров -->
+            <button id="show-all-button" class="filter filter--active" type="button" aria-pressed="true">Show All</button> <!-- Фильтр «все»; включён при загрузке; aria-pressed сообщает состояние -->
+            <button id="show-adults-button" class="filter" type="button" aria-pressed="false">Show Adults</button> <!-- Фильтр «совершеннолетние» (от 18 лет); выключен при загрузке -->
+        </div>
+        <ul id="user-list" class="user-list"></ul> <!-- Список пользователей; строки (li) создаёт JavaScript через DOM -->
+    </section>
+</main>
+</body>
+</html>
