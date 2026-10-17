@@ -1,0 +1,69 @@
+<!doctype html> <!-- Объявляем современный стандарт HTML для единообразного разбора страницы браузером. -->
+<html lang="en"> <!-- Указываем английский язык видимого интерфейса приложения. -->
+<head> <!-- Начинаем служебную часть документа. -->
+    <meta charset="UTF-8"> <!-- Включаем UTF-8 для корректного отображения английского текста и русских комментариев. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Подстраиваем ширину страницы под экран устройства. -->
+    <meta name="theme-color" content="#edf2ef"> <!-- Подбираем цвет браузерной панели в поддержку фона приложения. -->
+    <meta name="description" content="A calm, simple user registration app built with HTML, CSS, and JavaScript."> <!-- Описываем страницу для браузера и поисковой выдачи. -->
+    <title>User Registration</title> <!-- Задаём название вкладки. -->
+    <link rel="stylesheet" href="css/main.css"> <!-- Подключаем общую палитру, сетку и оформление страницы. -->
+    <link rel="stylesheet" href="css/form.css"> <!-- Подключаем стили полей, кнопок, сообщений и списка. -->
+    <script src="js/user.js" defer></script> <!-- Загружаем правила пользователя; defer ждёт разбора HTML и сохраняет порядок скриптов. -->
+    <script src="js/userManager.js" defer></script> <!-- Загружаем закрытый менеджер после создания пользователя. -->
+    <script src="js/app.js" defer></script> <!-- Загружаем интерфейсную логику последней, чтобы её функции уже существовали. -->
+</head> <!-- Закрываем служебную часть документа. -->
+<body> <!-- Начинаем видимое содержимое страницы. -->
+<main class="page-shell"> <!-- Центрируем приложение и ограничиваем ширину чтения. -->
+    <header class="page-heading"> <!-- Группируем главный заголовок и вступительную фразу. -->
+        <p class="eyebrow">PEOPLE OPERATIONS</p> <!-- Добавляем сдержанный надзаголовок для визуальной иерархии. -->
+        <h1>User Registration</h1> <!-- Показываем обязательное название приложения. -->
+        <p class="page-intro">A clear, considered way to add and review people.</p> <!-- Коротко объясняем назначение страницы. -->
+    </header> <!-- Завершаем вступительную часть. -->
+    <section class="registration-card" aria-labelledby="form-title"> <!-- Группируем форму и связываем секцию с её заголовком. -->
+        <div class="card-heading"> <!-- Отделяем название формы от её полей. -->
+            <span class="step-mark" aria-hidden="true">01</span> <!-- Показываем декоративный номер и скрываем его от экранного диктора. -->
+            <div> <!-- Группируем заголовок с пояснением. -->
+                <h2 id="form-title">Create a record</h2> <!-- Обозначаем назначение формы. -->
+                <p>Enter a name and age to add someone to the list.</p> <!-- Подсказываем, какие данные нужны. -->
+            </div> <!-- Закрываем группу заголовка формы. -->
+        </div> <!-- Закрываем шапку карточки. -->
+        <form id="registration-form" novalidate> <!-- Создаём форму; novalidate оставляет проверки и сообщения под контролем JavaScript. -->
+            <div class="form-fields"> <!-- Объединяем поля и кнопку в одну сетку. -->
+                <label class="field" for="name-input"> <!-- Связываем подпись с полем имени через for и id. -->
+                    <span class="field-label">Name</span> <!-- Показываем видимую подпись имени. -->
+                    <input id="name-input" name="name" type="text" placeholder="Name" autocomplete="off"> <!-- Принимаем имя как текст и открываем доступ к нему по id. -->
+                </label> <!-- Закрываем подпись-обёртку имени. -->
+                <label class="field" for="age-input"> <!-- Связываем подпись с числовым полем возраста. -->
+                    <span class="field-label">Age</span> <!-- Показываем видимую подпись возраста. -->
+                    <input id="age-input" name="age" type="number" inputmode="numeric" placeholder="Age" autocomplete="off"> <!-- Просим браузер о числовом вводе, а правила диапазона проверяем в JavaScript. -->
+                </label> <!-- Закрываем подпись-обёртку возраста. -->
+                <button class="button button-primary register-button" type="submit">Register</button> <!-- Запускаем форму мышью или клавишей Enter. -->
+            </div> <!-- Закрываем сетку полей. -->
+            <p id="form-message" class="form-message" role="status" aria-live="polite"></p> <!-- Выводим обновляемые сообщения внутри страницы. -->
+        </form> <!-- Закрываем форму регистрации. -->
+    </section> <!-- Закрываем карточку формы. -->
+    <section class="users-section" aria-labelledby="users-title"> <!-- Группируем счётчик, фильтры и список пользователей. -->
+        <div class="users-heading"> <!-- Выравниваем заголовок раздела и общий счётчик. -->
+            <div> <!-- Группируем заголовок списка с надзаголовком. -->
+                <p class="eyebrow section-eyebrow">DIRECTORY</p> <!-- Показываем надзаголовок каталога. -->
+                <h2 id="users-title">Registered users</h2> <!-- Обозначаем содержимое нижнего раздела. -->
+            </div> <!-- Закрываем группу заголовка списка. -->
+            <p id="user-count" class="user-count" aria-live="polite">Total: 0</p> <!-- Показываем общее количество записей. -->
+        </div> <!-- Закрываем строку заголовка и счётчика. -->
+        <div class="directory-panel"> <!-- Объединяем переключатели и карточки общей поверхностью. -->
+            <div class="filter-bar" role="group" aria-label="Filter users"> <!-- Обозначаем группу кнопок переключения фильтра. -->
+                <button class="button button-filter" id="show-all-button" type="button" aria-pressed="true">Show All</button> <!-- Показываем всех и помечаем фильтр активным. -->
+                <button class="button button-filter" id="show-adults-button" type="button" aria-pressed="false">Show Adults</button> <!-- Включаем фильтр совершеннолетних без изменения исходного массива. -->
+            </div> <!-- Закрываем панель фильтра. -->
+            <ul id="user-list" class="user-list" aria-live="polite" aria-relevant="additions removals"> <!-- Создаём список, содержимое которого JavaScript будет заменять. -->
+                <li class="empty-state">No users yet. Add the first person above.</li> <!-- Даём подсказку до первой регистрации. -->
+            </ul> <!-- Закрываем список пользователей. -->
+        </div> <!-- Закрываем каталог. -->
+    </section> <!-- Закрываем раздел пользователей. -->
+    <footer class="page-footer"> <!-- Отделяем техническое пояснение от рабочего содержимого. -->
+        <span class="status-dot" aria-hidden="true"></span> <!-- Добавляем декоративный индикатор активной сессии. -->
+        <p>Session only <span aria-hidden="true">·</span> records clear when the page is refreshed.</p> <!-- Сообщаем, что данные хранятся только до обновления страницы. -->
+    </footer> <!-- Завершаем нижнюю подпись. -->
+</main> <!-- Закрываем основную оболочку приложения. -->
+</body> <!-- Завершаем видимое содержимое. -->
+</html> <!-- Закрываем HTML-документ. -->
