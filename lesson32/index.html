@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Указываем кодировку страницы -->
     <meta charset="UTF-8">
-    <title>Title</title>
+
+    <!-- Настройка отображения на разных устройствах -->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <!-- Название вкладки браузера -->
+    <title>HW - JavaScript Modules</title>
+
+    <!-- Подключаем CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!--
+        Подключаем главный JavaScript-файл.
+
+        type="module" сообщает браузеру,
+        что app.js является ES Module.
+
+        Теперь внутри app.js можно использовать
+        конструкции import и export.
+
+        Обратите внимание:
+        math.js и geometry.js здесь НЕ подключаем.
+
+        Их подключит сам app.js через import.
+
+        Атрибут defer не нужен:
+        внешние module scripts уже имеют
+        отложенное выполнение по умолчанию.
+    -->
+    <script type="module" src="./js/app.js"></script>
+
 </head>
+
 <body>
+
+<h1>JavaScript Modules - Homework</h1>
+
+<p>
+    Open Developer Tools (F12)
+    and select the Console tab.
+</p>
 
 </body>
 </html>

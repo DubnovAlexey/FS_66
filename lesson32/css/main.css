@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+}
+
+h1 {
+    color: #1d3557;
+}
+
+
+/*
+Зачем вообще разбивать программу на файлы?
+
+Что такое модуль?
+
+Чем import отличается от подключения десяти <script> в HTML?
+
+Что делает export?
+
+Что делает import?
+
+Что такое dependency?
+
+Что такое named export?
+
+Что такое default export?
+
+Почему у named import используются { }?
+
+Что означает ./?
+
+Что означает ../?
+
+Почему app.js не должен содержать всю программу?
+
+Почему внутреннюю вспомогательную функцию необязательно экспортировать?
+
+Зачем type="module"?
+ */
