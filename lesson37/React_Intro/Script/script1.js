@@ -52,4 +52,3 @@ const studentName= "John Doe";
 // const studentNameElement = <h1>Привет, studentName!</h1>; //Error1
 //  const studentNameElement = <h1>Привет, {studentName}!</h1>;
 // root.render(studentNameElement);
-

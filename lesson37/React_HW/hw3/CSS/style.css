@@ -1,0 +1,141 @@
+/* ==========================================================================
+Тёмная тема оформления (Dark UI) с использованием сеточной раскладки CSS Grid
+========================================================================== */
+
+body {
+    margin: 0;
+    padding: 24px;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #1e1b4b, #0f172a 70%);
+    color: #f8fafc;
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* Основной контейнер панели профиля */
+.cyber-dashboard {
+    width: 100%;
+    max-width: 580px;
+    background-color: rgba(30, 41, 59, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Верхняя часть панели с индикатором статуса и заголовком */
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+/* Индикатор текущего статуса обучения */
+.status-pill {
+    display: inline-block;
+    background-color: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* Главный заголовок с градиентной заливкой текста */
+.dashboard-title {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #38bdf8, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Двухколоночная сетка CSS Grid для карточек анкетных данных */
+.data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+/* Адаптивное перестроение сетки в одну колонку на узких экранах */
+@media (max-width: 480px) {
+    .data-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Карточка отдельного свойства (компонент InfoCard) */
+.data-card {
+    background-color: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Подпись параметра в верхнем регистре */
+.data-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #94a3b8;
+}
+
+/* Значение параметра */
+.data-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #f1f5f9;
+}
+
+/* Трёхколоночная сетка для числовых показателей курса */
+.metrics-panel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+/* Базовая карточка числового показателя */
+.metric-tile {
+    padding: 16px 10px;
+    border-radius: 14px;
+    text-align: center;
+    background-color: rgba(15, 23, 42, 0.8);
+}
+
+/* Акцентные модификаторы рамок и текста для карточек статистики */
+.metric-tile.accent-cyan {
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    color: #38bdf8;
+}
+
+.metric-tile.accent-purple {
+    border: 1px solid rgba(192, 132, 252, 0.45);
+    color: #c084fc;
+}
+
+.metric-tile.accent-slate {
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    color: #cbd5e1;
+}
+
+/* Крупное числовое значение метрики */
+.metric-value {
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+/* Подпись под числовым значением метрики */
+.metric-title {
+    font-size: 12px;
+    color: #94a3b8;
+}

@@ -1,0 +1,118 @@
+/* ==========================================================================
+Базовые стили страницы и центрирование основного контейнера
+========================================================================== */
+
+body {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: #f0f4f8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Использование Flexbox для центрирования карточки по горизонтали и вертикали */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* Основной контейнер карточки профиля */
+.profile-card {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 460px;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e2e8f0;
+}
+
+/* Заголовок профиля */
+.profile-title {
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-size: 26px;
+    color: #1e293b;
+    text-align: center;
+    border-bottom: 2px solid #eff6ff;
+    padding-bottom: 16px;
+}
+
+/* Контейнер списка анкетных данных */
+.profile-info {
+    margin-bottom: 24px;
+}
+
+/* Строка отдельного параметра: подпись слева, значение справа */
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 0;
+    padding: 10px 14px;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Стили наименования поля */
+.info-label {
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* Стили значения поля */
+.info-value {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+/* Акцентное выделение для названия курса (бейдж) */
+.course-badge {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Контейнер для карточек статистики по занятиям */
+.lessons-summary {
+    display: flex;
+    gap: 16px;
+}
+
+/* Базовый блок счётчика занятий */
+.lesson-box {
+    flex: 1; /* Равное распределение ширины между двумя блоками в ряду */
+    padding: 16px 12px;
+    border-radius: 12px;
+    text-align: center;
+display: flex;
+flex-direction: column;
+gap: 6px;
+}
+
+/* Цветовая тема блока пройденных занятий */
+.lesson-box.completed {
+    background-color: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+}
+
+/* Цветовая тема блока оставшихся занятий */
+.lesson-box.remaining {
+    background-color: #fffbeb;
+    border: 1px solid #fde68a;
+    color: #92400e;
+}
+
+/* Числовой индикатор количества занятий */
+.lesson-number {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* Текстовая подпись под числовым индикатором */
+.lesson-caption {
+    font-size: 13px;
+}

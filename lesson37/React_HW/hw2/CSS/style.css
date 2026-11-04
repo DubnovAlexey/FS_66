@@ -1,0 +1,84 @@
+/* ==========================================================================
+Оформление учебного профиля с использованием блочной структуры (.field / .box)
+========================================================================== */
+
+body {
+    background-color: #e1e388;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 30px 15px;
+}
+
+/* Центрированный вертикальный контейнер для карточек информации */
+.field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    max-width: 540px;
+    margin: 0 auto;
+    color: #2c2e10;
+    font-size: 1.2em;
+}
+
+/* Стили отдельного информационного блока */
+.box {
+    border: 2px solid #aaa719;
+    background-color: #d4d37f;
+    margin-bottom: 20px;
+    padding: 18px 24px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(85, 83, 12, 0.15);
+}
+
+/* Обнуление нижнего внешнего отступа у последнего элемента в контейнере */
+.box:last-child {
+    margin-bottom: 0;
+}
+
+/* Заголовок профиля в верхнем блоке */
+.header-box h1 {
+    margin: 0 0 10px 0;
+    font-size: 1.5em;
+    color: #3b3a08;
+}
+
+/* Выделенная строка с именем студента */
+.description {
+    color: #166534;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Отступы текстовых параграфов внутри информационных блоков */
+.box p {
+    margin: 10px 0;
+}
+
+/* Внешний контур индикатора прогресса обучения */
+.progress-track {
+    background-color: #fafafa;
+    border: 2px solid #aaa719;
+    border-radius: 20px;
+    height: 26px;
+    margin-top: 14px;
+    overflow: hidden;
+}
+
+/* Заполняемая полоса прогресса (ширина задаётся динамически через React) */
+.progress-fill {
+    background-color: #dd567e;
+    border-right: 2px solid #c93964;
+    height: 100%;
+    color: #ffffff;
+    font-size: 0.75em;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
